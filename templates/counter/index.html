@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Counter - Django</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <main class="container">
+        <section class="card">
+            <h1>Word Counter</h1>
+            <p class="subtitle">Simple text analysis using Django</p>
+
+            <form method="post">
+                {% csrf_token %}
+                <textarea name="text" placeholder="Type or paste your text here...">{{ text }}</textarea>
+
+                <div class="buttons">
+                    <button type="submit">Count Text</button>
+                    <a href="{% url 'word_counter' %}" class="clear">Clear</a>
+                </div>
+            </form>
+
+            <div class="results">
+                <div class="stat">
+                    <span>Words</span>
+                    <strong>{{ word_count }}</strong>
+                </div>
+                <div class="stat">
+                    <span>Characters</span>
+                    <strong>{{ character_count }}</strong>
+                </div>
+                <div class="stat">
+                    <span>Without Spaces</span>
+                    <strong>{{ character_no_spaces }}</strong>
+                </div>
+                <div class="stat">
+                    <span>Sentences</span>
+                    <strong>{{ sentence_count }}</strong>
+                </div>
+                <div class="stat">
+                    <span>Paragraphs</span>
+                    <strong>{{ paragraph_count }}</strong>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
